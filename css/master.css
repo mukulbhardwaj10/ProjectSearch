@@ -1,18 +1,68 @@
 #loading-img {
         background: url("../images/loading.gif") center center no-repeat;
 }
-#test {
-    font-size: 23px;
+
+body {
+    background: #FFFFFF;
+    font-size: 20px;
+    font-family: 'sofia_prolight';
 }
 
+.card {
+    background: #FFFFFF;
+    margin: 5px;
+    border-radius: 3px;
+}
 
-.overlay {
-    background: #e9e9e9;
-    display: none;
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    opacity: 0.5;
+.box {
+    color: #7F0B01;
+    border-radius: 3px;
+    display: inline-block;
+    text-align: left;
+    padding: 1px 5px 1px 5px;
+    margin: 3px;
+    background: #FFA69E;
+    border-bottom: 5px solid #FF686B;
+}
+
+.box .number {
+    background: #FFFFFF;
+    display: inline-block;
+    font-size: 12px;
+    padding: 0px 5px 0px 5px;
+}
+
+.button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    min-width: 300px;
+    font-size: 16px;
+}
+
+.textarea-like {
+    text-align: left;
+    background: #2e2e2e;
+    color: white;
+    font-family: 'sofia_prolight';
+    font-size: 22px;
+}
+
+.found {
+    background: #FFC215;
+}
+
+.selected {
+    font-size: 28px;
+    color: white;
+    background: #FFC215;
+}
+
+.mini-button {
+    cursor: pointer;
+    text-decoration: underline;
 }
