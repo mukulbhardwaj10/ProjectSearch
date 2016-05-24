@@ -1,0 +1,23 @@
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope, $http) {
+    $scope.message = "";
+    var webSerLink = "http://52.221.229.107:8080/search?q=";
+    $scope.search = function() {
+        $scope.loading = true;
+        var res = encodeURI($scope.message);
+        res = res.replace(/%0A/g, "%5Cn");
+
+        $http({
+            method: "GET",
+            url: webSerLink + res,
+            dataType: 'jsonp',
+            crossDomain: true
+        }).then(function mySucces(response) {
+            $scope.loading = false;
+            console.log("looking for " + $scope.message + " with " + webSerLink + res);
+            $scope.result = response.data;
+        }, function myError(response) {
+            $scope.result = response.statusText;
+        });
+    }
+});

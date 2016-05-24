@@ -1,0 +1,33 @@
+<!DOCTYPE HTML5>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Project Search</title>
+    <link rel="stylesheet" href="./css/master.css" >
+</head>
+
+<body ng-app="myApp" ng-controller="myCtrl">
+    <div align="center" class="">
+        <h1>Group 2</h1>
+        <textarea style="color:green" ng-model="message" cols="80" rows="20" maxlength="200"></textarea>
+        <br>
+        <input type="button" name="name" value="Search" ng-click="search()">
+        <div ng-show="loading" ><img id = "loading"src="./images/loading.gif" alt=""></div>
+        <!-- <div class="overlay" ng-show="loading">
+            <div id="loading-img"></div>
+        </div> -->
+        <div id="loading-img"></div>
+        <div ng-repeat="data in result" id="test">
+            <p><span ng-if=" data.matches.length == 0">Not </span>Found : {{data.line}}
+                <div ng-repeat="child in data.matches">file : {{child.file_name}} ===> line {{child.line_number}} </div>
+            </p>
+        </div>
+    </div>
+
+
+    <script src="./controller.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+</body>
+
+</html>
