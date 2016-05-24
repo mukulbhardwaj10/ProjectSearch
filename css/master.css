@@ -57,7 +57,7 @@ body {
 }
 
 .selected {
-    font-size: 28px;
+    font-size: 24px;
     color: white;
     background: #FFC215;
 }
@@ -65,4 +65,8 @@ body {
 .mini-button {
     cursor: pointer;
     text-decoration: underline;
+}
+
+.red {
+    background: red;
 }
