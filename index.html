@@ -5,28 +5,54 @@
     <meta charset="UTF-8">
     <title>Project Search</title>
     <link rel="stylesheet" href="./css/master.css" >
+    <link rel="stylesheet" href="./css/sofiapro_light_macroman/stylesheet.css" >
 </head>
 
 <body ng-app="myApp" ng-controller="myCtrl">
     <div align="center" class="">
         <h1>Group 2</h1>
-        <textarea style="color:green" ng-model="message" cols="80" rows="20" maxlength="200"></textarea>
-        <br>
-        <input type="button" name="name" value="Search" ng-click="search()">
-        <div ng-show="loading" ><img id = "loading"src="./images/loading.gif" alt=""></div>
-        <!-- <div class="overlay" ng-show="loading">
-            <div id="loading-img"></div>
-        </div> -->
-        <div id="loading-img"></div>
-        <div ng-repeat="data in result" id="test">
-            <p><span ng-if=" data.matches.length == 0">Not </span>Found : {{data.line}}
-                <div ng-repeat="child in data.matches">file : {{child.file_name}} ===> line {{child.line_number}} </div>
-            </p>
+        <textarea class="textarea-like" ng-hide="done" ng-model="message" cols="50" rows="10" maxlength="200"></textarea>
+
+        <div class="textarea-like" ng-show="done" ng-mouseleave="leave()" ng-mouseover="hover($index, data.matches.length > 0)" ng-repeat="data in result" ng-class="{found: data.matches.length > 0, selected: $index==selectedIndex}">
+            {{data.line}}
         </div>
+        <br>
+        <a class="mini-button" ng-hide="done" ng-click="addExample()">Add examples</a>
+        <br>
+
+
+        <input ng-hide="done" class="button" type="button" name="name" value="Search" ng-click="search()" />
+
+
+        <div ng-show="loading" ><img id = "loading"src="./images/loading.gif" alt=""></div>
+
+        <div id="loading-img"></div>
+
+        <div class="card" ng-repeat="data in result" ng-class="{selected: $index==selectedIndex}" ng-if="data.matches.length > 0">
+            {{data.line}}
+            <div class="box" ng-repeat="child in data.matches | startFrom:0 | limitTo:1">
+                {{child.file_name}}
+                <div class="number">
+                    {{child.line_number}}
+                </div>
+            </div>
+
+            <a class="mini-button" ng-show="data.matches.length > 1" ng-click="showAll = !showAll" ng-hide="showAll">Show more</a>
+
+            <div class="box" <div ng-show="showAll" ng-repeat="child in data.matches | startFrom:1">
+                {{child.file_name}}
+                <div class="number">
+                    {{child.line_number}}
+                </div>
+            </div>
+
+            <a class="mini-button" ng-click="showAll = !showAll" ng-show="showAll">Hide</a>
+
+        </div>
+        <input ng-show="done" class="button red" type="button" name="name" value="Try Again" ng-click="tryAgain()" />
     </div>
 
 
-    
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
     <script src="./controller.js"></script>
 </body>
