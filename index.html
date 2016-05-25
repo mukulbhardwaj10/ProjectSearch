@@ -6,29 +6,54 @@
     <title>Project Search</title>
     <link rel="stylesheet" href="./css/master.css" >
     <link rel="stylesheet" href="./css/sofiapro_light_macroman/stylesheet.css" >
+    <link href='https://fonts.googleapis.com/css?family=Handlee' rel='stylesheet' type='text/css'>
+    <!--Font-->
+    <link href='https://fonts.googleapis.com/css?family=Lora' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz' rel='stylesheet' type='text/css'>
+    <!--Bootstrap-->
+     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
 </head>
 
 <body ng-app="myApp" ng-controller="myCtrl">
-    <div align="center" class="">
-        <h1>Group 2</h1>
-        <textarea class="textarea-like" ng-hide="done" ng-model="message" cols="50" rows="10" maxlength="200"></textarea>
-
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+    <script src="./controller.js"></script>
+    <div class="container">
+        <!--Search page-->
+        <div class="row">
+            <div class="col-sm-12">
+                <h1 id="nameHead" style="font-family: 'Pacifico', cursive;">Wikipedia Search</h1>
+            <div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3 col-sm-offset-3" ng-hide="done"> 
+                <h3  style="font-family: 'Yanone Kaffeesatz', sans-serif;">Please input words <span class ="glyphicon glyphicon-pencil"></span></h3>
+            </div>  
+            <div class="col-sm-3"> 
+                <button class="mini-button" id="add-ex-button" ng-hide="done" ng-click="addExample()" ng-hide="done" >Add examples</button>
+            </div>   
+        <div>
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2"> 
+                <textarea class="textarea-like" id="textarea-search" ng-hide="done" ng-model="message" cols="50" rows="10" maxlength="200"></textarea>
+            </div> 
+        </div>    
+        <div class="row">
+            <div class="col-sm-2 col-sm-offset-2"> 
+                <button ng-hide="done" id="search-button" type="button" name="name"  ng-click="search()">
+                <span class="glyphicon glyphicon-search"></span>
+                </button>
+            </div>
+            <div ng-show="loading" ><img id = "loading"src="./images/loading.gif" alt=""></div>
+            <div id="loading-img"></div>
+        </div>  
+        <!--Result page-->
         <div class="textarea-like" ng-show="done" ng-mouseleave="leave()" ng-mouseover="hover($index, data.matches.length > 0)" ng-repeat="data in result" ng-class="{found: data.matches.length > 0, selected: $index==selectedIndex}">
             {{data.line}}
         </div>
-        <br>
-        <a class="mini-button" ng-hide="done" ng-click="addExample()">Add examples</a>
-        <br>
-
-
-        <input ng-hide="done" class="button" type="button" name="name" value="Search" ng-click="search()" />
-
-
-        <div ng-show="loading" ><img id = "loading"src="./images/loading.gif" alt=""></div>
-
-        <div id="loading-img"></div>
-
-        <div class="card" ng-repeat="data in result" ng-class="{selected: $index==selectedIndex}" ng-if="data.matches.length > 0">
+        <div class="card" ng-repeat="data in result" id="show-more" ng-class="{selected: $index==selectedIndex}" ng-if="data.matches.length > 0">
             {{data.line}}
             <div class="box" ng-repeat="child in data.matches | startFrom:0 | limitTo:1">
                 {{child.file_name}}
@@ -49,12 +74,9 @@
             <a class="mini-button" ng-click="showAll = !showAll" ng-show="showAll">Hide</a>
 
         </div>
-        <input ng-show="done" class="button red" type="button" name="name" value="Try Again" ng-click="tryAgain()" />
+        <button ng-show="done" id="try-again-button"  name="name" ng-click="tryAgain()">Try Again<span class="glyphicon glyphicon-repeat"></span>
+        </button>
     </div>
-
-
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
-    <script src="./controller.js"></script>
 </body>
 
 </html>
